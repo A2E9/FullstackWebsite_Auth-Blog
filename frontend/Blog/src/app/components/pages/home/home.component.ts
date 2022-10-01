@@ -9,37 +9,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  loginD: Login = {
-    username: '',
-    password: '',
-    
-  };
+
   form!: FormGroup;
 
 
-  constructor(private authService: AuthService, ) {}//private formBuilder: FormBuilder
+
+
+  constructor() {} //private formBuilder: FormBuilder
 
   ngOnInit() {
-    // this.form = this.formBuilder.group({   
+    // this.form = this.formBuilder.group({
     //     username: ['', Validators.maxLength(15)],
     //     password: ['', Validators.maxLength(20)],
-    //     email: ['', Validators.email],    
+    //     email: ['', Validators.email],
     //     first_name: ['' , Validators.maxLength(15)],
     //     last_name: ['', Validators.maxLength(15)]
     // });
-}
- 
-
-  
-  login(username:string, password:string) {
-    this.loginD.username = username;
-    this.loginD.password = password;
-    this.authService.login(this.loginD).subscribe({
-      next: (v) => console.log(v),
-      error: (e) => console.log(e),
-      complete: () => console.info('complete') 
-  });
   }
+  //
 
   
 }

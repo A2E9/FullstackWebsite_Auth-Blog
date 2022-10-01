@@ -5,19 +5,47 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
+import { PostCreateComponent } from './posts/post-create/post-create.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
+import { AuthGuard } from './services/auth.guard';
+
+
+
+// const appRoutes: Routes = [
+//   { path: 'home', component: HomeComponent },
+//   
+// ];
+
+const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},
+  { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
+  { path: 'edit', component: PostCreateComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    SignupComponent,
+    LoginComponent,
+    PostCreateComponent,
+    PostListComponent,
+    
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
