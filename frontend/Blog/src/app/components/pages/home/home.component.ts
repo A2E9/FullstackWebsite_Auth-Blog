@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   loginD: Login = {
     username: '',
     password: '',
+    
   };
   form!: FormGroup;
 
