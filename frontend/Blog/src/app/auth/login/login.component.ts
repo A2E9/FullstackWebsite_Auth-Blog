@@ -49,7 +49,10 @@ export class LoginComponent implements OnInit {
       next: (v) => {
         this.localStore.saveData('token', v.token);
         this.localStore.saveObject('user', v);
-      },
+        this.localStore.saveObject('user_id', v.user_info.id); 
+        this.localStore.saveObject('username', v.user_info.username); 
+        console.log(this.localStore.getData('user_id'));
+          },
       error: (e) => {
         if (e.status == 400) {
           this.errorMessage = 'Invalid credentials';

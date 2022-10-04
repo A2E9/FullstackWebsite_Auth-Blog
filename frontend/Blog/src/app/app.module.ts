@@ -23,7 +23,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},//
-  { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
+  { path: 'home/post-list/create', component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: 'home/post-list', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

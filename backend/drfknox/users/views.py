@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
-from .serializer import RegisterSerializer
+from .serializer import BlogPostSerializer, RegisterSerializer
 
 @api_view(['POST'])
 def login_api(request):
@@ -61,3 +61,14 @@ def register_api(request):
         'token':token
         
     })
+    
+@api_view(['POST'])
+def blog_post_create_api(request):
+    print (request)
+    serializer = BlogPostSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    
+    post = serializer.save()
+    
+    return Response({post})
+

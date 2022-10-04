@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private url = 'http://localhost:8000/';
 
-  xToken: any = this.localStore.getData('token'); //User Interface TODO
+  xToken: any = this.localStore.getData('token'); 
 
   constructor(
     private http: HttpClient,
