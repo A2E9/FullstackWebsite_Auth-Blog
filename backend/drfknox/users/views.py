@@ -19,12 +19,14 @@ def login_api(request):
             'id': user.id,
             'username':user.username,
             'password':user.password,
-            'email': user.email
+            'email': user.email,
+            
         },
         'token':token
         
     })   
     
+
 @api_view(['GET'])
 def get_user_data(request):
     user = request.user

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/Login';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalService } from 'src/app/services/local.service';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   loginD: Login = {
@@ -14,23 +16,40 @@ export class LoginComponent implements OnInit {
     password: '',
   };
 
-
   errorB!: boolean;
   errorMessage!: string;
+  userForm: any;
 
-
-  constructor(private authService: AuthService,private router: Router) {} 
-
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private localStore: LocalService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.userForm = this.formBuilder.group({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9]+$'),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z0-9]+$'),
+      ]),
+    });
   }
-  login(username: string, password: string) {
-    this.loginD.username = username;
-    this.loginD.password = password;
-    this.authService.login(this.loginD).subscribe({
+  onSubmit() {
+    console.log('Login');
+    this.authService.login(this.userForm.value).subscribe({
       next: (v) => {
-        this.router.navigateByUrl('/home');
-      }, //50 repetitions
+        this.localStore.saveData('token', v.token);
+        this.localStore.saveObject('user', v);
+      },
       error: (e) => {
         if (e.status == 400) {
           this.errorMessage = 'Invalid credentials';

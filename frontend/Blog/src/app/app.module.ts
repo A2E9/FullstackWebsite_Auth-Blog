@@ -11,6 +11,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { AuthGuard } from './services/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,7 @@ import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},//
   { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: 'edit', component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
@@ -44,6 +45,8 @@ const routes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

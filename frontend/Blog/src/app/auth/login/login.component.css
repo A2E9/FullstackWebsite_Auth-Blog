@@ -9,9 +9,6 @@
     height: 100%;
     align-items: center;
     position: absolute;
-    z-index: -99;
-  
-    background-color: rgba(29, 29, 29, 0.938);
   }
   
 
@@ -21,10 +18,13 @@
     flex-direction: column;
   }
   
-  .error{
+  .p-control{
     color:crimson;
     padding-bottom: 10px;
     font-size: large;
+    position: relative;
+    width: 100%;
+    overflow-wrap: break-word;
   }
   
   .input-place {
@@ -48,7 +48,7 @@
     border-radius: 10px;
     background-color: aliceblue;
     /* cursor:grabbing; */
-    margin: 10px;
+    /* margin: 10px; */
   }
   
   .btn:hover {
@@ -57,4 +57,7 @@
     color: aqua;
   }
   /* reg cursor:cell; */
-  
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+  }

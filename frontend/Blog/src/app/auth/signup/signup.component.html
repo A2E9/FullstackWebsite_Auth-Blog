@@ -1,1 +1,116 @@
-<p>signup works!</p>
+<main>
+  
+  <div class="login-container">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="input">
+      <section class="user-input">
+        <div class="input-control">
+
+          <input
+            type="text"
+            placeholder="First Name"
+            #first_name
+            class="input-place form-control"
+            formControlName="first_name"
+          />
+          
+        </div>
+        <input
+          class="input-place"
+          type="text"
+          placeholder="Last Name"
+          #last_name
+          formControlName="last_name"
+        />
+        <input
+          class="input-place"
+          type="text"
+          placeholder="Username"
+          #username
+          formControlName="username"
+        />
+        <input
+          class="input-place"
+          type="text"
+          placeholder="Email"
+          #email
+          formControlName="email"
+        />
+
+        <input
+          class="input-place"
+          type="text"
+          placeholder="Password"
+          #password
+          formControlName="password"
+        />
+
+        <input
+          class="input-place"
+          type="text"
+          placeholder="Password again"
+          #confirm_password
+          formControlName="confirm_password"
+        />
+      </section>
+      <div class="buttons">
+        <button type="submit" [disabled]="userForm.invalid" class="btn">
+          Reg
+        </button>
+
+        <button routerLink="/login/" class="btn">Log</button>
+      </div>
+      
+    </form>
+    
+  </div>
+  <div class="error">
+    <p
+      class="p-control"
+      *ngIf="
+        userForm.get('first_name').invalid && userForm.get('first_name').touched
+      "
+    >
+      Please enter a valid First Name
+    </p>
+    <p
+      class="p-control"
+      *ngIf="
+        userForm.get('last_name').invalid && userForm.get('last_name').touched
+      "
+    >
+      Please enter a valid Last Name
+    </p>
+    <p
+      class="p-control"
+      *ngIf="
+        userForm.get('username').invalid && userForm.get('username').touched
+      "
+    >
+      Please enter a valid Username
+    </p>
+    <p
+      class="p-control"
+      *ngIf="userForm.get('email').invalid && userForm.get('email').touched"
+    >
+      Please enter a valid Email
+    </p>
+    <p
+      class="p-control"
+      *ngIf="
+        userForm.get('password').invalid && userForm.get('password').touched
+      "
+    >
+      Please enter a valid password
+    </p>
+    <p
+      class="p-control"
+      *ngIf="
+        userForm.get('password').value !==
+          userForm.get('confirm_password').value &&
+        userForm.get('confirm_password').touched
+      "
+    >
+      Passwords do not match
+    </p>
+  </div>
+</main>

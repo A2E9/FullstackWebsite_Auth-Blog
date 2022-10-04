@@ -7,7 +7,8 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { Login } from '../Login';
 import { catchError, retry, tap } from 'rxjs/operators';
-
+import { LocalService } from './local.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,30 +16,49 @@ import { catchError, retry, tap } from 'rxjs/operators';
 export class AuthService {
   private url = 'http://localhost:8000/';
 
-  private token:any; //User Interface TODO
+  xToken: any = this.localStore.getData('token'); //User Interface TODO
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private localStore: LocalService,
+    private router: Router
+  ) {}
 
-  login(credentials: Login): Observable<any> {
+  getAuthStatus() {
+    return this.localStore.getData('token') !== null;
+  }
+
+  login(credentials: any): Observable<any> {
     let urlLogin = this.url + 'api/login/';
-    // this.getAuthStatus();
-    //console.log(credentials);
-    return this.http.post<any>(urlLogin, credentials)
-    .pipe(
-      tap((data) => {console.log('server data:', data.token); this.token = data.token}),
+    this.router.navigateByUrl('home');
+    return this.http.post<any>(urlLogin, credentials).pipe(
+      tap((data) => {
+        console.log('server data:', data.token);
+      })
       // catchError(this.handleError('login', urlLogin))
     );
   }
-
-
-
-
-  getAuthStatus() {
-    //this.http.request('POST' ,this.url + 'api/login/').subscribe(response => console.log(response));
-    // return localStorage.getItem('token') !== null;
-    return this.token !== null;
+  register(credentials: any): Observable<any> {
+    let urlRegister = this.url + 'api/register/';
+    this.router.navigateByUrl('home');
+    return this.http.post<any>(urlRegister, credentials).pipe(
+      tap((data) => {
+        console.log('server data:', data);
+      })
+    );
   }
 
+  logout() {
+    let headers = new HttpHeaders({
+      Authorization: `Token ${this.xToken}`,
+    });
+    this.localStore.removeData('token');
+    this.localStore.removeData('user');
+    this.router.navigate(['login/']);
+    return this.http.post<any>(this.url + 'api/logout/', null, {
+      headers: headers,
+    });
+  }
 
   private handleError(operation: String, url: String) {
     return (err: any) => {
@@ -49,8 +69,7 @@ export class AuthService {
         console.log(`status: ${err.status}, ${err.statusText}`);
         // errMsg = ...
       }
-      return (errMsg);
+      return errMsg;
     };
   }
-
 }

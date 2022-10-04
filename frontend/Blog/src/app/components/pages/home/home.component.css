@@ -9,7 +9,5 @@ main {
   height: 100%;
   align-items: center;
   position: absolute;
-  z-index: -99;
 
-  background-color: rgba(29, 29, 29, 0.938);
 }
