@@ -9,9 +9,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
-import { PostListComponent } from './posts/post-list/post-list.component';
 import { AuthGuard } from './services/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PostListComponent } from './posts/post-list/post-list.component';
 
 
 
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},//
   { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
-  { path: 'edit', component: PostCreateComponent, canActivate: [AuthGuard] },
+  { path: 'home/post-list', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 ];
@@ -37,8 +37,6 @@ const routes: Routes = [
     LoginComponent,
     PostCreateComponent,
     PostListComponent,
-    
-
   ],
   imports: [
     BrowserModule,

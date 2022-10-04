@@ -1,5 +1,6 @@
 import json
 from msilib.schema import ServiceInstall
+from tokenize import group
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -13,6 +14,7 @@ def login_api(request):
     user = serializer.validated_data['user']
     
     _, token = AuthToken.objects.create(user)
+    is_staff = user.is_staff
      
     return Response({
         'user_info':{
@@ -22,7 +24,8 @@ def login_api(request):
             'email': user.email,
             
         },
-        'token':token
+        'token':token,
+        'is_staff':is_staff,
         
     })   
     

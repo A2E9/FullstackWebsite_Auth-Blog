@@ -33,7 +33,7 @@ export class AuthService {
     this.router.navigateByUrl('home');
     return this.http.post<any>(urlLogin, credentials).pipe(
       tap((data) => {
-        console.log('server data:', data.token);
+        console.log('server data:', data);
       })
       // catchError(this.handleError('login', urlLogin))
     );

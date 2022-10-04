@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Login } from 'src/app/Login';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalService } from 'src/app/services/local.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { LocalService } from 'src/app/services/local.service';
 export class HomeComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private localStore: LocalService, private authServ: AuthService) {} //private formBuilder: FormBuilder
+  constructor(private localStore: LocalService, private authServ: AuthService, private router: Router) {} //private formBuilder: FormBuilder
 
   ngOnInit() {
     // this.form = this.formBuilder.group({
@@ -28,5 +29,8 @@ export class HomeComponent implements OnInit {
   //
   logout() {
     this.authServ.logout();
+  }
+  openPosts() {
+    this.router.navigateByUrl('post-list');
   }
 }

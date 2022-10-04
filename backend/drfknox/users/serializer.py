@@ -4,7 +4,7 @@ from rest_framework import serializers, validators
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'password', 'email', 'first_name', 'last_name')
+        fields = ('username', 'password', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'is_superuser', 'last_login', 'date_joined')
         
         extra_kwargs = {
             "first_name": {"required": False},
