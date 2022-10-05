@@ -20,5 +20,6 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('users.urls'))
+    path('api/', include('users.urls')),
+    path('api/', include('blog.urls'))
 ]

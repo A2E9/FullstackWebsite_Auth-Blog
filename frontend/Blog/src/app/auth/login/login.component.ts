@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         this.localStore.saveData('token', v.token);
         this.localStore.saveObject('user', v);
         this.localStore.saveObject('user_id', v.user_info.id); 
-        this.localStore.saveObject('username', v.user_info.username); 
+        // this.localStore.saveObject('username', v.user_info.username); 
         console.log(this.localStore.getData('user_id'));
           },
       error: (e) => {

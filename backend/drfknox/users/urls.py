@@ -15,5 +15,5 @@ urlpatterns = [
     path('logout/', knox_views.LogoutView.as_view()),
     path('logoutall/', knox_views.LogoutAllView.as_view()),
     # re_path(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
-    path('blogpost/', views.blog_post_create_api)
+    
 ]

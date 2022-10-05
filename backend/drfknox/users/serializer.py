@@ -1,6 +1,7 @@
+from datetime import date
 from django.contrib.auth.models import User
 from rest_framework import serializers, validators
-from .models import BlogPost
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,28 +41,3 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
     
-class BlogPostSerializer(serializers.ModelSerializer):
-    # user = serializers.StringRelatedField(many=False)
- 
-    class Meta:
-        model = BlogPost
-        fields = ('id', 'username', 'date', 'body')
-        
-    def create(self, validated_data):
-        id = validated_data.get('id')
-        username = validated_data.get('username')
-        date = validated_data.get('date')
-        body=validated_data.get('body')
-        
-        blogpost = BlogPost.objects.create(
-            id = id,
-            username=username,
-            date=date,
-            body=body,
-        )
-        blogpost.save()
-        return blogpost
-        
-    # def create(self, validated_data):
-        
-    #     return super().create(validated_data)
