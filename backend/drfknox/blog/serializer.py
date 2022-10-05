@@ -5,11 +5,10 @@ from .models import BlogPost
 
 
 class BlogPostSerializer(serializers.ModelSerializer):
-    # user = serializers.StringRelatedField(many=False)
- 
+
     class Meta:
         model = BlogPost
-        fields = ['id', 'user', 'date', 'body']
+        fields = '__all__'
         
 
         

@@ -1,0 +1,39 @@
+* {
+    cursor: default;
+  }
+  
+  main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    position: absolute;
+    color: aliceblue;
+  }
+  .btn {
+    padding: 5px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: aliceblue;
+    /* cursor:grabbing; */
+    /* margin: 10px; */
+  }
+  
+  .btn:hover {
+    background-color: black;
+  
+    color: aqua;
+  }
+  /* reg cursor:cell; */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  p{
+    margin-bottom: 10px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    text-align: center;
+  }

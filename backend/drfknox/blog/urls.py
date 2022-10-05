@@ -5,6 +5,8 @@ from django.views.generic.base import TemplateView
 
 
 
+
 urlpatterns = [
-    path('blogpost/', views.blog_post_create_api)
+    path('blogpost/', views.blog_post_create_api),
+    path('blogpostlist/', views.blog_post_list_api)
 ]

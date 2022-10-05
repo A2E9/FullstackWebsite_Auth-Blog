@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
+
+from blog.models import BlogPost
 from .serializer import BlogPostSerializer
 # Create your views here.
 
@@ -14,7 +16,12 @@ def blog_post_create_api(request):
     print (request)
     serializer = BlogPostSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
+    serializer.save()
     
-    
-    return Response({})
+    return Response({"message": request.data})
 
+@api_view(['GET'])
+def blog_post_list_api(request):
+    blog_posts = BlogPost.objects.all()
+    serializer = BlogPostSerializer(blog_posts, many=True)
+    return Response(serializer.data)

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BlogPostService } from 'src/app/services/blog-post.service';
 import { LocalService } from 'src/app/services/local.service';
 
@@ -13,17 +14,20 @@ export class PostCreateComponent implements OnInit {
   blogForm: any;
   token:any;
 
-  constructor(private formBuilder: FormBuilder, private blogPost: BlogPostService, private localStore: LocalService) {}
+  constructor(private formBuilder: FormBuilder, private blogPost: BlogPostService, private localStore: LocalService, private router: Router) {}
 
   ngOnInit(): void {
+    
     this.blogForm = this.formBuilder.group({
-      bodyText: new FormControl('', [
+     user: this.localStore.getData('user_id'),
+     // id: this.localStore.getData('user'),
+      body: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20),
         Validators.pattern('^[a-zA-Z0-9]+$'),
       ]),
-      user_id: this.localStore.getData('user_id'),
+      
     });
     
   }
@@ -33,5 +37,10 @@ export class PostCreateComponent implements OnInit {
       console.log(data);
     }
     );
+    this.onCancel();
+  }
+  onCancel() {
+    this.blogForm.reset();
+    this.router.navigate(['/home/post-list']);
   }
 }

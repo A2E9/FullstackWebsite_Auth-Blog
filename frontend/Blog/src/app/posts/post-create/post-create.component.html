@@ -1,11 +1,11 @@
 <main>
   <div class="main-container">
     <form [formGroup]="blogForm" class="input-container">
-      <!-- Create input for blog text and button onSubmit() -->
+
       <p
         class="p-control"
         *ngIf="
-          blogForm.get('bodyText').invalid && blogForm.get('bodyText').touched
+          blogForm.get('body').invalid && blogForm.get('body').touched
         "
       >
         Please enter a valid password
@@ -14,10 +14,12 @@
         type="text"
         placeholder="Enter blog text"
         name="blogText"
-        formControlName="bodyText"
+        formControlName="body"
         class="input-place"
       />
       <button class="btn" type="submit" [disabled]="blogForm.invalid" (click)="onSubmit()">Submit</button>
+      <!-- go back -->
+      <button class="btn" type="submit" (click)="onCancel()">Cancel</button>
     </form>
   </div>
 </main>

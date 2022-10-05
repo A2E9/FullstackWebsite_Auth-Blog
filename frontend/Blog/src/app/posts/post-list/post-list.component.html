@@ -1,1 +1,32 @@
-<button routerLink="create">Create</button>
+<main>
+    <div class='container'>
+        <section class="posts-list">
+            <div class="post-item" *ngFor="let post of posts">
+                <!-- <div class="post-item__content">
+                    <div class="post-item__header"> -->
+                        <p>Nr. {{post.id}} User: {{post.user}}</p>
+                        <p>Text: {{post.body}}</p>
+                        <p>Date: {{post.date}}</p>
+                        
+                    <!-- </div>
+                    <div class="post-item__image">
+                        <img src="{{post.imagePath}}" alt="{{post.title}}">
+                    </div>
+                    <div class="post-item__info">
+                        <p>{{post.content}}</p>
+                    </div>
+                    <div class="post-item__actions"> -->
+                       
+                        <!-- <button mat-button color="primary" (click)="onEdit(post.id)">Edit</button>
+                        <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button> -->
+                    </div>
+                <!-- </div>
+            </div> -->
+        </section>
+        <div class="buttons">
+
+            <button class="btn" >Edit</button>
+            <button class="btn" routerLink="create">Create</button>
+        </div>
+    </div>
+</main>

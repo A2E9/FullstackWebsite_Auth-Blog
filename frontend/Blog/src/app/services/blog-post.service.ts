@@ -21,10 +21,13 @@ export class BlogPostService {
     let headers = new HttpHeaders({
       Authorization: `Token ${this.xToken}`,
     });
-    return this.http.get<any>(this.url + 'api/posts/', {
+    return this.http.get<any>(this.url + 'api/blogpostlist/', {
       headers: headers,
-    });
-  }
+    })};
+    // .pipe((data: any) => {
+  //     console.log(data);
+  //     return data;
+  // })
 
   createPost(post: any): any {
     let headers = new HttpHeaders({
