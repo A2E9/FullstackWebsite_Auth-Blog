@@ -1,32 +1,42 @@
 <main>
-    <div class='container'>
-        <section class="posts-list">
-            <div class="post-item" *ngFor="let post of posts">
-                <!-- <div class="post-item__content">
-                    <div class="post-item__header"> -->
-                        <p>Nr. {{post.id}} User: {{post.user}}</p>
-                        <p>Text: {{post.body}}</p>
-                        <p>Date: {{post.date}}</p>
-                        
-                    <!-- </div>
-                    <div class="post-item__image">
-                        <img src="{{post.imagePath}}" alt="{{post.title}}">
-                    </div>
-                    <div class="post-item__info">
-                        <p>{{post.content}}</p>
-                    </div>
-                    <div class="post-item__actions"> -->
-                       
-                        <!-- <button mat-button color="primary" (click)="onEdit(post.id)">Edit</button>
-                        <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button> -->
-                    </div>
-                <!-- </div>
-            </div> -->
-        </section>
-        <div class="buttons">
+  <div class="main-div">
+    
+    <section class="post-container">
+      <div class="post-item" *ngFor="let post of posts">
+        <p-blockUI [target]="pnl" [blocked]="blockedPanel">
+            <i class="pi pi-lock" style="font-size: 3rem"></i>
+        </p-blockUI>
+        <p-card
+          header="ID: {{ post.id }} User: {{ post.user }}"
+          subheader="Date: {{ post.date }}"
+          [style]="{ width: '300px' }"
+          styleClass="p-card-shadow"
+          #pnl
+        >
+          <ng-template pTemplate="header">
+            <img alt="Card" src="assets/kiwi.svg" height="100px" />
+          </ng-template>
+          <p>{{ post.body }}</p>
+          <ng-template pTemplate="footer">
+            <p-button label="Edit" icon="pi pi-check"></p-button>
+            <p-button
+              label="Delete"
+              icon="pi pi-times"
+              styleClass="p-button-danger"
+              [style]="{ 'margin-left': '47px' }"
+            ></p-button>
+           
+          </ng-template>
+        </p-card>
+      </div>
+    </section>
 
-            <button class="btn" >Edit</button>
-            <button class="btn" routerLink="create">Create</button>
-        </div>
+    <div class="buttons">
+      <button class="btn" routerLink="..">Back</button>
+      <p-inputSwitch [(ngModel)]="blockedPanel"></p-inputSwitch>
+      <button class="btn" routerLink="create">Create</button>
+      
     </div>
+
+  </div>
 </main>

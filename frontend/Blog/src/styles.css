@@ -6,3 +6,11 @@
     padding: 0; 
     box-sizing: border-box; 
 }
+
+*:enabled {
+    box-shadow: none;
+}
+
+.p-inputswitch.p-focus .p-inputswitch-slider {
+    box-shadow: none;
+  }

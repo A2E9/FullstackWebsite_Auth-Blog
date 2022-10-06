@@ -30,12 +30,14 @@
       </div>
 
       <div class="pw-input">
+        <!-- <p-password [(ngModel)]="value1" [feedback]="false"></p-password> -->
         <input
           class="input-place"
-          type="text"
+          type="password"
           placeholder="Password"
           #password
           formControlName="password"
+          
         />
       </div>
       
@@ -43,6 +45,7 @@
         <button type="submit" [disabled]="userForm.invalid" class="btn">
           Log
         </button>
+        
         <button routerLink="/signup/" class="btn">Reg</button>
       </div>
     </form>

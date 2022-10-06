@@ -1,4 +1,22 @@
-<main>
-<button (click)="logout()">Logout</button>
-<button routerLink="post-list">Posts List</button>
+<main >
+
+    <p-menubar  [model]="items">
+        <ng-template pTemplate="start">
+            <img src="assets/kiwi.svg" height="40" class="mr-2" style="padding: 0;padding-right:10px;">
+        </ng-template>
+        <ng-template pTemplate="end">
+            <input style="border: none; background-color:bisque; border-radius:20px" type="text" pInputText placeholder="Search  [AdminPanel]">
+        </ng-template>
+    </p-menubar>
+
+<!-- <button (click)="logout()">Logout</button> -->
+<!-- <button routerLink="post-list">Posts List</button> -->
+
+
 </main>
+<!-- 
+<h5>Overlay</h5>
+<p-colorPicker [(ngModel)]="color2"></p-colorPicker>
+<h5>Change</h5>
+<p-inputSwitch [(ngModel)]="checked"></p-inputSwitch> -->
+

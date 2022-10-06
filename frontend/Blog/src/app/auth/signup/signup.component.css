@@ -1,73 +1,87 @@
-*{
-    cursor:default;
-  }
-  
-  main {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    position: absolute;
+* {
+  cursor: default;
 
-  }
-  
-  /* .input-control p{
-    position: left;
-  } */
+}
+:host ::ng-deep .p-inputtext {
+  /* border: none; */
+  border:none;
+  background-color: crimson;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 30px;
+  color: blue;
+  width: 155px;
+  cursor: none;
+}
+:host ::ng-deep .p-inputtext:enabled:focus{
+background-color: rebeccapurple;
 
-  .input-control {
-    display: flex;
+box-shadow: none;
+}
 
-  }
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  position: absolute;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.input-control {
+  display: flex;
+}
 
 .user-input {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-.p-control{
-    color:crimson;
-    padding-bottom: 10px;
-    font-size: large;
-    position: relative;
-    width: 100%;
-    overflow-wrap: break-word;
-  }
-  
-  .input-place {
-    border: none;
-    background-color: crimson;
-    margin-bottom: 20px;
-    padding-left: 10px;
-    height: 30px;
-    border-radius: 30px;
-    color: blue;
-  
-  }
-  
-  .input-place:focus {
-    outline: none;
-  }
-  
-  .btn {
-   padding: 5px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: aliceblue;
-    cursor:grabbing; 
-    /* margin: 10px; */
-  }
-  .buttons{
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .btn:hover {
-    background-color: black;
-  
-    color: aqua;
-  }
-  /* reg cursor:cell; */
-  
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+
+.p-control {
+  color: crimson;
+  padding-bottom: 10px;
+  font-size: large;
+  position: relative;
+  width: 100%;
+
+}
+.input-place {
+  border: none;
+  background-color: crimson;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 30px;
+  color: blue;
+  cursor: none;
+}
+
+.input-place:focus {
+  outline: none;
+}
+
+.btn {
+  padding: 5px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: aliceblue;
+  cursor: grabbing;
+  /* margin: 10px; */
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn:hover {
+  background-color: black;
+
+  color: aqua;
+}
+/* reg cursor:cell; */

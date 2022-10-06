@@ -1,8 +1,33 @@
 * {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -99;
+  background-color: rgba(29, 29, 29, 0.938);
+}
+/* 
+ :host ::ng-deep *:enabled:focus {
+  background-color: rebeccapurple;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+:host ::ng-deep .p-button-danger:enabled:focus {
+  background-color: rebeccapurple;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  box-shadow:none;
+      -webkit-box-shadow:none;
+      -moz-box-shadow:none;
+}
 
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -99;
-    background-color: rgba(29, 29, 29, 0.938);
-  }
+:host 
+  ::ng-deep :focus {
+    outline:0 !important;
+      box-shadow:none!important;;
+      -webkit-box-shadow:none;
+      -moz-box-shadow:none;
+  } */
+
+

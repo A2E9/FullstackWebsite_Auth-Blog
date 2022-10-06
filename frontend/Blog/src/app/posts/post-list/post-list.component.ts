@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogPostService } from 'src/app/services/blog-post.service';
+import { Post } from 'src/app/Post';
 
 @Component({
   selector: 'app-post-list',
@@ -7,12 +8,16 @@ import { BlogPostService } from 'src/app/services/blog-post.service';
   styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent implements OnInit {
-  posts: any;
+  posts!: Post[];
+  blockedPanel: boolean = false;
   constructor(private blogService: BlogPostService) {
-    this.blogService.getPosts().subscribe((data: any) => {
+    this.blogService.getPosts()
+    .subscribe((data: Post[]) => {
       this.posts = data;
       console.log(this.posts);
     });
+    // this.blogService.getPostsAll().then((posts: any) => this.posts = posts);
+    // console.log(this.posts);
   }
 
   ngOnInit(): void {}

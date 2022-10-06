@@ -5,7 +5,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Login } from '../Login';
+
 import { catchError, retry, tap } from 'rxjs/operators';
 import { LocalService } from './local.service';
 import { Router } from '@angular/router';
@@ -30,9 +30,10 @@ export class AuthService {
 
   login(credentials: any): Observable<any> {
     let urlLogin = this.url + 'api/login/';
-    this.router.navigateByUrl('home');
-    return this.http.post<any>(urlLogin, credentials).pipe(
+    return this.http.post<any>(urlLogin, credentials)
+    .pipe(
       tap((data) => {
+        this.router.navigateByUrl('home');
         console.log('server data:', data);
       })
       // catchError(this.handleError('login', urlLogin))

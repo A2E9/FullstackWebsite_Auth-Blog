@@ -22,10 +22,10 @@ export class PostCreateComponent implements OnInit {
      user: this.localStore.getData('user_id'),
      // id: this.localStore.getData('user'),
       body: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(20),
-        Validators.pattern('^[a-zA-Z0-9]+$'),
+        // Validators.required,
+        // Validators.minLength(3),
+        Validators.maxLength(200),
+        // Validators.pattern('^[a-zA-Z0-9]+$'),
       ]),
       
     });

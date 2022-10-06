@@ -13,18 +13,33 @@ import { AuthGuard } from './services/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostListComponent } from './posts/post-list/post-list.component';
 
+import { AccordionModule } from 'primeng/accordion';
+import { MenuItem } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {MenubarModule} from 'primeng/menubar';
+import {PasswordModule} from 'primeng/password';
+import { DividerModule } from "primeng/divider";
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {ButtonModule} from 'primeng/button';
+import {BlockUIModule} from 'primeng/blockui';
 
-
-// const appRoutes: Routes = [
-//   { path: 'home', component: HomeComponent },
-//   
-// ];
+import {CardModule} from 'primeng/card';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},//
-  { path: 'home/post-list/create', component: PostCreateComponent, canActivate: [AuthGuard] },
-  { path: 'home/post-list', component: PostListComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'home/post-list/create',
+    component: PostCreateComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'home/post-list',
+    component: PostListComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 ];
@@ -45,8 +60,20 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
+    AccordionModule,
+    BrowserAnimationsModule,
+    ColorPickerModule,
+    InputSwitchModule,
+    MenubarModule,
+    PasswordModule,
+    DividerModule,
+    VirtualScrollerModule,
+    CardModule,
+    ButtonModule,
+    BlockUIModule,
+
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

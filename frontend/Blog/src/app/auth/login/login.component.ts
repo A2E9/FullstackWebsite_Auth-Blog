@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/Login';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalService } from 'src/app/services/local.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -11,10 +11,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginD: Login = {
-    username: '',
-    password: '',
-  };
+
+  value1!: string;
 
   errorB!: boolean;
   errorMessage!: string;

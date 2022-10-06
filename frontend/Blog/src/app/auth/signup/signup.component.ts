@@ -13,6 +13,8 @@ export class SignupComponent implements OnInit {
   errorB!: boolean;
   errorMessage!: string;
   userForm: any;
+  value2: string = "Password";
+  value1!: string;
 
 
   constructor(
@@ -31,12 +33,15 @@ export class SignupComponent implements OnInit {
         Validators.maxLength(20),
         Validators.pattern('^[a-zA-Z0-9]+$'),
       ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(20),
-        Validators.pattern('^[a-zA-Z0-9]+$'),
-      ]),
+      password: this.value2
+      // new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(4),
+      //   Validators.maxLength(20),
+      //   Validators.pattern('^[a-zA-Z0-9]+$'),
+      // ])
+      ,
+
       confirm_password: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
