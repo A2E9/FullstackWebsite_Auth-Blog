@@ -13,7 +13,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             "last_name": {"required": False},
             "password": {"write_only": True},
             "email": {
-                "required": False,
+                "required": True,
                 # "allow_blank": False,
                 "validators": [
                     # validators.UniqueValidator(

@@ -13,7 +13,7 @@ from .serializer import BlogPostSerializer
 
 @api_view(['POST'])
 def blog_post_create_api(request):
-    print (request)
+    print (request.data)
     serializer = BlogPostSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     serializer.save()

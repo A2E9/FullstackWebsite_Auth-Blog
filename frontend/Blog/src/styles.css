@@ -1,16 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
 *,
 *::before,
-*::after { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-*:enabled {
-    box-shadow: none;
+body {
+  background-color: rgba(29,29,29, 1);
+  color: aliceblue;
+  font-size: 16px;
 }
-
-.p-inputswitch.p-focus .p-inputswitch-slider {
-    box-shadow: none;
-  }
+;

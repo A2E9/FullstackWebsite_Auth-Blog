@@ -24,8 +24,10 @@ import { DividerModule } from "primeng/divider";
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ButtonModule} from 'primeng/button';
 import {BlockUIModule} from 'primeng/blockui';
+import {TableModule} from 'primeng/table';
 
 import {CardModule} from 'primeng/card';
+import { MenuBarComponent } from './components/objects/menu-bar/menu-bar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -52,6 +54,7 @@ const routes: Routes = [
     LoginComponent,
     PostCreateComponent,
     PostListComponent,
+    MenuBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ const routes: Routes = [
     CardModule,
     ButtonModule,
     BlockUIModule,
+    TableModule
 
   ],
   providers: [AuthGuard],

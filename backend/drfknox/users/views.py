@@ -6,6 +6,10 @@ from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
 from .serializer import RegisterSerializer
+from django.contrib.auth.models import User
+from users.serializer import RegisterSerializer
+from rest_framework import viewsets
+
 
 @api_view(['POST'])
 def login_api(request):
@@ -60,3 +64,6 @@ def register_api(request):
         
     })
     
+class CurrentUserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer

@@ -1,42 +1,65 @@
+<app-menu-bar [items]="items"></app-menu-bar>
+<p-inputSwitch class="inputswitch" [(ngModel)]="switchView"></p-inputSwitch>
 <main>
-  <div class="main-div">
-    
-    <section class="post-container">
-      <div class="post-item" *ngFor="let post of posts">
-        <p-blockUI [target]="pnl" [blocked]="blockedPanel">
-            <i class="pi pi-lock" style="font-size: 3rem"></i>
-        </p-blockUI>
-        <p-card
-          header="ID: {{ post.id }} User: {{ post.user }}"
-          subheader="Date: {{ post.date }}"
-          [style]="{ width: '300px' }"
-          styleClass="p-card-shadow"
-          #pnl
-        >
-          <ng-template pTemplate="header">
-            <img alt="Card" src="assets/kiwi.svg" height="100px" />
-          </ng-template>
-          <p>{{ post.body }}</p>
-          <ng-template pTemplate="footer">
-            <p-button label="Edit" icon="pi pi-check"></p-button>
-            <p-button
-              label="Delete"
-              icon="pi pi-times"
-              styleClass="p-button-danger"
-              [style]="{ 'margin-left': '47px' }"
-            ></p-button>
-           
-          </ng-template>
-        </p-card>
-      </div>
-    </section>
 
-    <div class="buttons">
-      <button class="btn" routerLink="..">Back</button>
-      <p-inputSwitch [(ngModel)]="blockedPanel"></p-inputSwitch>
-      <button class="btn" routerLink="create">Create</button>
-      
+  <!-- <div class="main-div"> -->
+
+  <section *ngIf="switchView" class="post-container">
+    <div class="post-item" *ngFor="let post of posts">
+      <p-blockUI [target]="pnl" [blocked]="blockedPanel">
+        <i class="pi pi-lock" style="font-size: 3rem"></i>
+      </p-blockUI>
+      <p-card #pnl header="ID: {{ post.id }} User: {{ post.user }}" subheader="Date: {{ post.date }}"
+        [style]="{ width: '300px' }" styleClass="post-card" class="post-card">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="assets/kiwi.svg" height="100px" />
+        </ng-template>
+        <span>{{ post.body }}</span>
+        <ng-template pTemplate="footer">
+          <p-button label="Edit" icon="pi pi-check"></p-button>
+          <p-button label="Delete" icon="pi pi-times" styleClass="p-button-danger"
+            [style]="{ 'margin-left': '47px' }" ></p-button>
+
+        </ng-template>
+      </p-card>
     </div>
+  </section>
 
-  </div>
+
+
+  <p-table [style]="{margin: '20px'}" *ngIf="!switchView" [value]="posts" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Post-Id</th>
+        <th>Bild</th>
+        <th>User</th>
+        <th>Datum</th>
+        <th>Nachricht</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-post>
+      <tr>
+        <td>{{post.id}}</td>
+        <td><img src="assets/kiwi.svg" [alt]="" width="100" class="shadow-4" /></td>
+        <td>{{ post.created_by.username }}</td>
+        <td>{{post.date}}</td>
+        <td>{{post.body}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{posts ? posts.length : 0 }} posts.
+      </div>
+    </ng-template>
+  </p-table>
+  
+  <!-- </div> -->
 </main>
+<!-- <div class="footer">
+  <div class="buttons">
+    <button class="btn" routerLink="..">Back</button>
+    <p-inputSwitch [(ngModel)]="blockedPanel"></p-inputSwitch>
+    <button class="btn" routerLink="create">Create</button>
+  </div>
+
+</div> -->

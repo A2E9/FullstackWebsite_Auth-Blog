@@ -32,7 +32,8 @@ export class PostCreateComponent implements OnInit {
     
   }
   onSubmit() {
-    console.log(this.blogForm.value);
+    // console.log('this.localStore.getData(user_id) :>> ', this.localStore.getData('user_id'));
+    // console.log('this.blogForm.value :>> ', this.blogForm.value);
     this.blogPost.createPost(this.blogForm.value).subscribe((data: any) => {
       console.log(data);
     }
