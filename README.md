@@ -36,3 +36,8 @@ F.ps1  # starts the frontend
 ```
 ./.venv/Scripts/activate
 ```
+
+
+### Simple AES Encryption and Decryption
+
+>Encrypt the user_data on the backend server (Django) and send it to fron-end (Angular) for decryption via the secret key.
