@@ -9,12 +9,11 @@ class BlogPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogPost
-        fields = '__all__'  # add user_id field to fields list
+        fields = '__all__'
 
     def get_created_by(self, obj):
-        return {'first_name': obj.user.first_name, 'last_name': obj.user.last_name, 
-                'username': obj.user.username, 'is_staff': obj.user.is_active, 
-                'is_staff': obj.user.is_active, 'date_joined': obj.user.date_joined,
-                'last_login': obj.user.last_login, 'email': obj.user.email}
-
-
+        user = obj.user
+        return {'first_name': user.first_name, 'last_name': user.last_name, 
+                'username': user.username, 'is_staff': user.is_active, 
+                'date_joined': user.date_joined, 'last_login': user.last_login, 
+                'email': user.email}

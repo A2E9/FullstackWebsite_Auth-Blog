@@ -1,33 +1,42 @@
 import { Injectable } from '@angular/core';
+import { sha256 } from 'js-sha256';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalService {
+  constructor() {}
 
-  constructor() { }
-
-  public saveData(key: string, value: string) {
-    localStorage.setItem(key, value);
-  }
-  public saveObject(key: string, value: any) {
+  public setItem(key: string, value: string) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-
-  public getData(key: string) {
-    return localStorage.getItem(key);
+  public getItem(key: string, parse: boolean = false) {
+  
+    const item = localStorage.getItem(key);
+  
+    if (item === null) {
+      console.log("errorFound");
+      return null;
+    }
+  
+    if (parse) {
+      try {
+        return JSON.parse(item);
+      } catch (e) {
+        console.log('Error parsing JSON', e);
+        return null;
+      }
+    }
+  
+    return item;
   }
 
-  public getObject(key: string) {
-    return JSON.parse(localStorage.getItem(key) || '{}');
+  public removeItem(key: string) {
+    // localStorage.removeItem(key);
   }
 
-  public removeData(key: string) {
-    localStorage.removeItem(key);
-  }
-
-  public clearData() {
-    localStorage.clear();
+  public clearStorage() {
+    // localStorage.clear();
   }
 }

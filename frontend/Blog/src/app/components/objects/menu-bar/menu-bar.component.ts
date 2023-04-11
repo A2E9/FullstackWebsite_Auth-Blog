@@ -18,19 +18,10 @@ export class MenuBarComponent implements OnInit {
     private localStore: LocalService,
     private authServ: AuthService,
     private router: Router
-  ) {} //private formBuilder: FormBuilder
-  
-  // items!: MenuItem[];
-  
+  ) {} 
+
   ngOnInit() {
-    
   }
-  //
-  logout() {
-    this.authServ.logout();
-  }
-  openPosts() {
-    this.router.navigateByUrl('home/post-list');
-  }
+
 
 }

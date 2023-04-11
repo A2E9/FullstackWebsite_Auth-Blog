@@ -45,19 +45,11 @@ export class LoginComponent implements OnInit {
     console.log('Login');
     this.authService.login(this.userForm.value).subscribe({
       next: (v) => {
-        this.localStore.saveData('token', v.token);
-        this.localStore.saveObject('user', v);
-        this.localStore.saveObject('user_id', v.user_info.id); 
-        // this.localStore.saveObject('username', v.user_info.username); 
+        // this.localStore.setItem('token', v.token);
+        this.localStore.setItem('user', v);
           },
       error: (e) => {
-        if (e.status == 400) {
-          this.errorMessage = 'Invalid credentials';
-        } else if (e.status == 500) {
-          this.errorMessage = 'Server error';
-        } else if (e.status == 404) {
-          this.errorMessage = 'Not found';
-        }
+        this.errorMessage = this.authService.handleError(e);
         this.errorB = true;
       },
       complete: () => {},

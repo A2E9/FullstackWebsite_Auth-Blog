@@ -1,0 +1,36 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.not-found-container h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.not-found-container p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 5px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: aliceblue;
+}
+
+.btn:hover {
+  background-color: black;
+
+  color: aqua;
+}

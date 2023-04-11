@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register('users', views.CurrentUserViewSet)
 
 urlpatterns = [
+    # path('dh/',views.get_user_data),
     path('login/', views.login_api),
     path('user/', views.get_user_data),
     path('register/', views.register_api),

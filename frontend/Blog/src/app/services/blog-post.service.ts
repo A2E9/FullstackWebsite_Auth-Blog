@@ -11,7 +11,7 @@ import { LocalService } from './local.service';
 export class BlogPostService {
   private url = 'http://localhost:8000/';
 
-  xToken: any = this.localStore.getData('token'); 
+  xToken: any = this.localStore.getItem('user',true)?.token 
 
   constructor(
     private http: HttpClient,
@@ -29,7 +29,7 @@ export class BlogPostService {
       tap( 
       {
         
-        error: async (error) =>  {if(error.status === 401) this.localStore.clearData(); location.reload();}
+        // error: async (error) =>  {if(error.status === 401) this.localStore.clearStorage(); location.reload();}
       }
       )
     );};

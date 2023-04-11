@@ -28,6 +28,10 @@ import {TableModule} from 'primeng/table';
 
 import {CardModule} from 'primeng/card';
 import { MenuBarComponent } from './components/objects/menu-bar/menu-bar.component';
+import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
+
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -44,6 +48,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -74,7 +79,8 @@ const routes: Routes = [
     CardModule,
     ButtonModule,
     BlockUIModule,
-    TableModule
+    TableModule,
+    
 
   ],
   providers: [AuthGuard],

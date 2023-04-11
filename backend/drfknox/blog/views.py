@@ -25,3 +25,6 @@ def blog_post_list_api(request):
     blog_posts = BlogPost.objects.all()
     serializer = BlogPostSerializer(blog_posts, many=True)
     return Response(serializer.data)
+
+
+#delete

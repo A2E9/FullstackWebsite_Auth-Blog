@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalService } from 'src/app/services/local.service';
@@ -19,27 +19,27 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authServ: AuthService,
+    private authService: AuthService,
     private localStore: LocalService,
     private router: Router
   ) {}
 
 
   ngOnInit(): void {
-    this.userForm = this.formBuilder.group({
+    this.userForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20),
         Validators.pattern('^[a-zA-Z0-9]+$'),
       ]),
-      password: this.value2
-      // new FormControl('', [
-      //   Validators.required,
-      //   Validators.minLength(4),
-      //   Validators.maxLength(20),
-      //   Validators.pattern('^[a-zA-Z0-9]+$'),
-      // ])
+      password: 
+      new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        // Validators.maxLength(20),
+        // Validators.pattern('^[a-zA-Z0-9]+$'),
+      ])
       ,
 
       confirm_password: new FormControl('', [
@@ -48,6 +48,7 @@ export class SignupComponent implements OnInit {
       ]),
       email: new FormControl('', ), //[Validators.required], Validators.email
       first_name: new FormControl('', [
+        Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20),
         Validators.pattern('^[a-zA-Z]+$'),
@@ -61,20 +62,14 @@ export class SignupComponent implements OnInit {
   }
   onSubmit() {
     console.log('Register');
-    this.authServ.register(this.userForm.value).subscribe({
+    this.authService.register(this.userForm.value).subscribe({
       next: (v) => {
-        this.localStore.saveData('token', v.token);
-        this.localStore.saveObject('user', v);
+        // this.localStore.setItem('token', v.token);
+        this.localStore.setItem('user', v);
         this.router.navigateByUrl('home');
       },
       error: (e) => {
-        if (e.status == 400) {
-          this.errorMessage = 'Invalid credentials';
-        } else if (e.status == 500) {
-          this.errorMessage = 'Server error';
-        } else if (e.status == 404) {
-          this.errorMessage = 'Not found';
-        }
+        this.errorMessage = this.authService.handleError(e);
         this.errorB = true;
       },
       complete: () => {},
