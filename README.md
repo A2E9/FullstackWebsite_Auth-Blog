@@ -3,6 +3,14 @@
 >This project is a full-stack web application that uses Angular for the frontend and Django for the backend.
 ## Database Setup
 
+Install dependecies
+```
+npm i
+python -m venv 
+./.venv/Scripts/activate
+pip install -r requirements.txt
+```
+
 Create a new database or modify the DATABASES setting in settings.py:
 ```
   'ENGINE': 'django.db.backends.mysql',
@@ -31,12 +39,6 @@ To start the application, run the following commands:
 B.ps1  # starts the backend
 F.ps1  # starts the frontend
 ```
-
-### Venv
-```
-./.venv/Scripts/activate
-```
-
 
 ### Simple AES Encryption and Decryption
 
