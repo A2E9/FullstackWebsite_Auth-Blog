@@ -26,8 +26,7 @@
   </section>
 
 
-
-  <p-table [style]="{margin: '20px'}" *ngIf="!switchView" [value]="posts" responsiveLayout="scroll">
+  <p-virtualScroller [value]="posts" *ngIf="!switchView" [style]="{ margin: '20px' }" [itemSize]="50">
     <ng-template pTemplate="header">
       <tr>
         <th>Post-Id</th>
@@ -51,7 +50,35 @@
         In total there are {{posts ? posts.length : 0 }} posts.
       </div>
     </ng-template>
-  </p-table>
+</p-virtualScroller>
+
+
+
+  <!-- <p-table [style]="{margin: '20px'}" *ngIf="!switchView" [value]="posts" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Post-Id</th>
+        <th>Bild</th>
+        <th>User</th>
+        <th>Datum</th>
+        <th>Nachricht</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-post>
+      <tr>
+        <td>{{post.id}}</td>
+        <td><img src="assets/kiwi.svg" [alt]="" width="100" class="shadow-4" /></td>
+        <td>{{ post.created_by.username }}</td>
+        <td>{{post.date}}</td>
+        <td>{{post.body}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{posts ? posts.length : 0 }} posts.
+      </div>
+    </ng-template>
+  </p-table> -->
   
   <!-- </div> -->
 </main>

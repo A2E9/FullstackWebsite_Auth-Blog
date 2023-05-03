@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LocalService } from 'src/app/services/local.service';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { IndexedDbService } from 'src/app/services/indexed-db.service';
 
 @Component({
   selector: 'app-post-list',
@@ -13,7 +14,8 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent implements OnInit {
-  posts!: Post[];
+  posts: any[] = [];
+
   blockedPanel: boolean = false;
   switchView: boolean = false;
   pnl: any;
@@ -22,20 +24,23 @@ export class PostListComponent implements OnInit {
     private blogService: BlogPostService,
     private localStore: LocalService,
     private authServ: AuthService,
-    private router: Router
+    private router: Router,
+    private indexDB: IndexedDbService
   ) {
-    this.blogService.getPosts().subscribe((data: Post[]) => {
-      data.forEach((user) => {
-        user.date = moment(user.date).format('DD.MM.YYYY');
-      });
-      this.posts = data;
-      console.log(data);
+    this.getAllValues().finally(() => {
+      if (this.posts.length === 0)
+        this.blogService.getPosts().subscribe(() => {});
     });
-    // this.blogService.getPostsAll().then((posts: any) => this.posts = posts);
-    // console.log(this.posts);
   }
+  async getAllValues() {
+    const values = await this.indexDB.getAllData();
 
-  ngOnInit(): void {
+    values.forEach((e) => {
+      this.posts.push(e.value);
+    });
+    console.log('values: ', values);
+  }
+  ngOnInit() {
     this.items = [
       {
         label: 'Back',
@@ -183,10 +188,12 @@ export class PostListComponent implements OnInit {
   logout() {
     this.authServ.logout();
   }
+
+  // this.blogService.getPosts()
+  // .subscribe((data: Post[]) => {
+  //   data.forEach((user) => {
+  //     user.date = moment(user.date).format('DD.MM.YYYY');
+  //   });
+  // this.blogService.getPosts()
+  // .subscribe((data: Post[]) => {})
 }
-// getPosts(this: any) {
-//   this.blogService.getPosts().subscribe((data: any) => {
-//     console.log(data);
-//     this.posts = data;
-//   });
-// }
