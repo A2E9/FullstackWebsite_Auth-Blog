@@ -12,11 +12,14 @@ import { LocalService } from 'src/app/services/local.service';
 export class HomeComponent implements OnInit {
   items!: MenuItem[];
 
-  constructor(private authServ: AuthService, private router: Router, private localStore: LocalService, private encrypted: EncryptionService) {
-  }
+  constructor(
+    private authServ: AuthService,
+    private router: Router,
+    private localStore: LocalService,
+    private encrypted: EncryptionService
+  ) {}
   ngOnInit(): void {
-    console.log('4')
-    
+
     this.items = [
       {
         label: 'Posts',
@@ -26,8 +29,7 @@ export class HomeComponent implements OnInit {
         },
       },
       {
-        label: (this.localStore.getItem('user',true))?.user_info?.username 
-        ,
+        label: this.localStore.getItem('user', true)?.user_info?.username,
         icon: 'pi pi-fw pi-user',
         items: [
           {
@@ -72,14 +74,13 @@ export class HomeComponent implements OnInit {
   }
   openPosts() {
     this.router.navigateByUrl('home/post-list');
-    console.log(this.encrypted.getUserData().subscribe({
+    this.encrypted.getUserData().subscribe({
       next: (data) => {
         console.log('Decrypted data:', data);
       },
       error: (error) => {
         console.error('Error:', error);
       },
-    }
-    ))
+    });
   }
 }

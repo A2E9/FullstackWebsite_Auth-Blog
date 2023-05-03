@@ -30,6 +30,15 @@ import {CardModule} from 'primeng/card';
 import { MenuBarComponent } from './components/objects/menu-bar/menu-bar.component';
 import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
 
+import { IndexedDbService } from './services/indexed-db.service';
+
+// export function initDataStorageServiceFactory() {
+//   return async (): Promise<IndexedDbService> => {
+//     return await IndexedDbService.initService();
+//   };
+// }
+
+
 
 
 
@@ -83,7 +92,13 @@ const routes: Routes = [
     
 
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard
+  //   ,{
+  //   provide: IndexedDbService,
+  //   useFactory: initDataStorageServiceFactory(),
+  //   deps:[]
+  // }
+],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

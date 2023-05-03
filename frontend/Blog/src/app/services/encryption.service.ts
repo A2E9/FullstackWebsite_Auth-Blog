@@ -15,6 +15,8 @@ export class EncryptionService {
   private apiUrl = 'http://localhost:8000/api/user/'
   private secretKey = '0xasdfasdfasdfasdfasdfasdfasdfas'
 
+  private secretIndex: string = 'your-secret-key';
+
   constructor(private http: HttpClient, private localStore: LocalService) { }
 
   getUserData() {
@@ -41,6 +43,15 @@ export class EncryptionService {
     });
     const decrypted = CryptoJS.AES.decrypt(cipherParams, CryptoJS.enc.Utf8.parse(key), { mode: CryptoJS.mode.CBC, iv: iv });
     return decrypted.toString(CryptoJS.enc.Utf8);
+  }
+
+  encryptDB(data: any): string {
+    return CryptoJS.AES.encrypt(JSON.stringify(data), this.secretKey).toString();
+  }
+
+  decryptDB(ciphertext: string): any {
+    const bytes = CryptoJS.AES.decrypt(ciphertext, this.secretKey);
+    return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
   }
 }
 

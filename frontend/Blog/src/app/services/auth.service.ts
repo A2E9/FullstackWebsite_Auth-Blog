@@ -38,7 +38,7 @@ export class AuthService {
     return this.http.post<any>(urlLogin, credentials)
     .pipe(
       tap((data) => {
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('/home');
         console.log('server data:', data);
       })
       // catchError(this.handleError('login', urlLogin))
@@ -62,6 +62,7 @@ export class AuthService {
     // this.localStore.removeItem('token');
     this.localStore.removeItem('user');
     this.router.navigate(['login/']);
+    console.log("logout...")
     return this.http.post<any>(this.url + 'api/logout/', null, {
       headers: headers,
     });

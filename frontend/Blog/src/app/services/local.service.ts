@@ -33,10 +33,10 @@ export class LocalService {
   }
 
   public removeItem(key: string) {
-    // localStorage.removeItem(key);
+    localStorage.removeItem(key);
   }
 
   public clearStorage() {
-    // localStorage.clear();
+    localStorage.clear();
   }
 }
